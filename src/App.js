@@ -5,13 +5,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <div>
-            <h1>This is my App</h1>
-          </div>
-        </header>
+        <h1>React Complete Guide</h1>
       </div>
     );
+    // return React.createElement('div', { className: 'App' }, React.createElement('h1', null, 'Is this working?'));
   }
 }
 
