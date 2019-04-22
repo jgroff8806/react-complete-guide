@@ -1,36 +1,37 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
 
-const app = props => {
-  const [personsState, setPersonsState] = useState({
-    persons: [{ name: 'Jason', age: 31 }, { name: 'Jayson', age: 32 }, { name: 'Json', age: 45 }]
-  });
-
-  const [otherState, setOtherState] = useState({
+class App extends Component {
+  state = {
+    persons: [{ name: 'Jason', age: 31 }, { name: 'Json', age: 45 }, { name: 'Jayson', age: 32 }],
     otherState: 'some other value'
-  });
+  };
 
-  console.log(personsState, otherState);
-
-  const switchNameHandler = () => {
-    setPersonsState({
-      persons: [{ name: 'Maximilian', age: 31 }, { name: 'Jayson', age: 32 }, { name: 'Json', age: 47 }]
+  switchNameHandler = newName => {
+    this.setState({
+      persons: [{ name: newName, age: 31 }, { name: 'Json', age: 45 }, { name: 'Jayson', age: 33 }]
     });
   };
 
-  return (
-    <div className="App">
-      <h1>React Complete Guide</h1>
-      <p>This is a nested paragraph</p>
-      <button onClick={switchNameHandler}>Switch Name</button>
-      <Person name={personsState.persons[0].name} age={personsState.persons[0].age} />
-      <Person name={personsState.persons[1].name} age={personsState.persons[1].age} />
-      <Person name={personsState.persons[2].name} age={personsState.persons[2].age}>
-        My Hobbies: Being confused with Jason
-      </Person>
-    </div>
-  );
-};
+  render() {
+    return (
+      <div className="App">
+        <h1>React Complete Guide</h1>
+        <p>This is a nested paragraph</p>
+        <button onClick={() => this.switchNameHandler('Maximilian!!')}>Switch Name</button>
+        <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
+        <Person
+          name={this.state.persons[1].name}
+          age={this.state.persons[1].age}
+          click={this.switchNameHandler.bind(this, 'Maximilian!')}
+        >
+          My Hobbies: Being confused with Jason
+        </Person>
+        <Person name={this.state.persons[2].name} age={this.state.persons[2].age} />
+      </div>
+    );
+  }
+}
 
-export default app;
+export default App;
