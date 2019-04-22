@@ -4,11 +4,14 @@ import Person from './Person/Person';
 
 class App extends Component {
   state = {
-    persons: [{ name: 'Jason', age: 31 }, { name: 'Jayson', age: 32 }, { name: 'Json', age: 45 }]
+    persons: [{ name: 'Jason', age: 31 }, { name: 'Jayson', age: 32 }, { name: 'Json', age: 45 }],
+    otherState: 'some other value'
   };
 
   switchNameHandler = () => {
-    console.log('Clicked');
+    this.setState({
+      persons: [{ name: 'Maximilian', age: 31 }, { name: 'Jayson', age: 32 }, { name: 'Json', age: 47 }]
+    });
   };
 
   render() {
@@ -24,7 +27,6 @@ class App extends Component {
         </Person>
       </div>
     );
-    // return React.createElement('div', { className: 'App' }, React.createElement('h1', null, 'Is this working?'));
   }
 }
 
